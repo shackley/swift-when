@@ -10,46 +10,52 @@ import Foundation
 
 infix operator =>: AssignmentPrecedence
 
-public func =><T: Comparable, R>(value: T, result: @escaping @autoclosure () -> R) -> (value: T, result: () -> R) {
-  return (value: value, result: result)
+public func =><T: Comparable, R>(value: T, result: @escaping @autoclosure () -> R) -> WhenCase<T, R> {
+  return WhenCase(value: value, result: result)
 }
 
-public func =><T: Comparable, R>(value: T, result: @escaping () -> R) -> (value: T, result: () -> R) {
-  return (value: value, result: result)
+public func =><T: Comparable, R>(value: T, result: @escaping () -> R) -> WhenCase<T, R> {
+  return WhenCase(value: value, result: result)
 }
 
-public func =><R>(value: @escaping @autoclosure () -> Bool, result: @escaping @autoclosure () -> R) -> (value: () -> Bool, result: () -> R) {
-  return (value: value, result: result)
+public func =><T: Comparable, R>(range: Range<T>, result: @escaping @autoclosure () -> R) -> WhenCase<T, R> {
+  return WhenCase(range: range, result: result)
 }
 
-public func =><R>(value: @escaping @autoclosure () -> Bool, result: @escaping () -> R) -> (value: () -> Bool, result: () -> R) {
-  return (value: value, result: result)
+public func =><T: Comparable, R>(range: Range<T>, result: @escaping () -> R) -> WhenCase<T, R> {
+  return WhenCase(range: range, result: result)
 }
 
-@_functionBuilder public struct WhenBuilder {
-  public static func buildBlock<T: Comparable, R>(_ cases: (value: T, result: () -> R)...) -> [(value: T, result: () -> R)] {
-    return cases
-  }
-  
-  public static func buildBlock<R>(_ cases: (value: () -> Bool, result: () -> R)...) -> [(value: () -> Bool, result: () -> R)] {
-    return cases
-  }
+public func =><T: Comparable, R>(closedRange: ClosedRange<T>, result: @escaping @autoclosure () -> R) -> WhenCase<T, R> {
+  return WhenCase(closedRange: closedRange, result: result)
 }
 
-@discardableResult public func when<T: Comparable, R>(_ value: T, @WhenBuilder _ cases: () -> [(value: T, result: () -> R)]) -> R {
-  for possibleCase in cases() {
-    if possibleCase.value == value {
-      return possibleCase.result()
+public func =><T: Comparable, R>(closedRange: ClosedRange<T>, result: @escaping () -> R) -> WhenCase<T, R> {
+  return WhenCase(closedRange: closedRange, result: result)
+}
+
+public func =><R>(expression: @escaping @autoclosure () -> Bool, result: @escaping @autoclosure () -> R) -> WhenExpression<R> {
+  return WhenExpression(expression: expression, result: result)
+}
+
+public func =><R>(expression: @escaping @autoclosure () -> Bool, result: @escaping () -> R) -> WhenExpression<R> {
+  return WhenExpression(expression: expression, result: result)
+}
+
+@discardableResult public func when<T: Comparable, R>(_ value: T, @WhenBuilder _ cases: () -> [WhenCase<T, R>]) -> R {
+  for whenCase in cases() {
+    if whenCase.matches(value) {
+      return whenCase.result()
     }
   }
   fatalError("No matching case for value: \(String(describing: value))")
 }
 
-@discardableResult public func when<R>(@WhenBuilder _ cases: () -> [(value: () -> Bool, result: () -> R)]) -> R {
-  for possibleCase in cases() {
-    if possibleCase.value() {
-      return possibleCase.result()
+@discardableResult public func when<R>(@WhenBuilder _ expressions: () -> [WhenExpression<R>]) -> R {
+  for expression in expressions() {
+    if expression.matches() {
+      return expression.result()
     }
   }
-  fatalError("None of the cases are true")
+  fatalError("None of the expressions are true")
 }

@@ -18,7 +18,7 @@ when(x) {
 }
 ```
 
-Because `when` is a function, it can also be used as an expression.
+Because `when` is a function, it can be used as an expression.
 
 ```swift
 let result = when(x) {
@@ -46,7 +46,16 @@ when(x) {
 }
 ```
 
-You can also use `when` without an argument. This acts as a simple if-else chain where the cases are Boolean expressions. The first expression that is true is chosen.
+It also works with ranges!
+```swift
+when(x) {
+    0 ... 4 => print("x is between 0 and 4") 
+    5 ..< 10 => print("x is between 5 and 9")
+    10 => print("x is 10")
+}
+```
+
+ `when` can be used without an argument. This acts as a simple if-else chain where the cases are Boolean expressions. The first expression that is true is chosen.
 ```swift
 when {
     x == 1 => print("x is 1")
@@ -59,5 +68,5 @@ when {
 ### Cocoapods
 
 ```ruby
-pod 'SwiftWhen', '~> 0.0.1'
+pod 'SwiftWhen', '~> 0.0.2'
 ```

@@ -27,6 +27,23 @@ class WhenTests: XCTestCase {
     
     XCTAssertTrue(called2)
   }
+  
+  func testStatementRanges() {
+    var called2 = false
+    
+    func f1() { XCTFail() }
+    func f2() { called2 = true }
+    func f3() { XCTFail() }
+    
+    let x = 15
+    when(x) {
+      0 ..< 10 => f1()
+      10 ..< 20 => f2()
+      20 ... 30 => f3()
+    }
+    
+    XCTAssertTrue(called2)
+  }
 
   func testExpression() {
     let x = 2
@@ -35,6 +52,18 @@ class WhenTests: XCTestCase {
       1 => "one"
       2 => "two"
       3 => "three"
+    }
+    
+    XCTAssertTrue(y == "two")
+  }
+  
+  func testExpressionRanges() {
+    let x = 15
+    
+    let y = when(x) {
+      0 ..< 10 => "one"
+      10 ..< 20 => "two"
+      20 ... 30 => "three"
     }
     
     XCTAssertTrue(y == "two")
@@ -56,6 +85,29 @@ class WhenTests: XCTestCase {
         f2()
       }
       3 => {
+        f3()
+      }
+    }
+    
+    XCTAssertTrue(called2)
+  }
+  
+  func testMultipleStatementRanges() {
+    var called2 = false
+    
+    func f1() { XCTFail() }
+    func f2() { called2 = true }
+    func f3() { XCTFail() }
+    
+    let x = 15
+    when(x) {
+      0 ..< 10 => {
+        f1()
+      }
+      10 ..< 20 => {
+        f2()
+      }
+      20 ... 30 => {
         f3()
       }
     }

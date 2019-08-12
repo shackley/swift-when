@@ -10,6 +10,9 @@
 		3B065F8322F34A7000A94CBF /* When.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B065F8222F34A7000A94CBF /* When.swift */; };
 		3B065F9A22F34B1100A94CBF /* WhenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B065F9922F34B1100A94CBF /* WhenTests.swift */; };
 		3B065F9C22F34B1100A94CBF /* SwiftWhen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B065F7722F34A1100A94CBF /* SwiftWhen.framework */; };
+		3B3571542301BF42006FF7D2 /* WhenCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3571532301BF42006FF7D2 /* WhenCase.swift */; };
+		3B3571562301BF62006FF7D2 /* WhenBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3571552301BF62006FF7D2 /* WhenBuilder.swift */; };
+		3B3571582301C119006FF7D2 /* WhenExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3571572301C119006FF7D2 /* WhenExpression.swift */; };
 		3BFD737C22F92F45007FD8AB /* When.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BFD737B22F92F45007FD8AB /* When.h */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +33,10 @@
 		3B065F9722F34B1100A94CBF /* SwiftWhenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftWhenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B065F9922F34B1100A94CBF /* WhenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenTests.swift; sourceTree = "<group>"; };
 		3B065F9B22F34B1100A94CBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B3571532301BF42006FF7D2 /* WhenCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenCase.swift; sourceTree = "<group>"; };
+		3B3571552301BF62006FF7D2 /* WhenBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenBuilder.swift; sourceTree = "<group>"; };
+		3B3571572301C119006FF7D2 /* WhenExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenExpression.swift; sourceTree = "<group>"; };
+		3B3571592301C296006FF7D2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3B50900922F92C76008E666F /* SwiftWhen.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftWhen.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3BFD737B22F92F45007FD8AB /* When.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = When.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,6 +67,7 @@
 				3B065F9822F34B1100A94CBF /* SwiftWhenTests */,
 				3B065F7822F34A1100A94CBF /* Products */,
 				3B50900922F92C76008E666F /* SwiftWhen.podspec */,
+				3B3571592301C296006FF7D2 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,8 +83,11 @@
 		3B065F7922F34A1100A94CBF /* SwiftWhen */ = {
 			isa = PBXGroup;
 			children = (
-				3B065F7B22F34A1100A94CBF /* Info.plist */,
 				3B065F8222F34A7000A94CBF /* When.swift */,
+				3B3571552301BF62006FF7D2 /* WhenBuilder.swift */,
+				3B3571532301BF42006FF7D2 /* WhenCase.swift */,
+				3B3571572301C119006FF7D2 /* WhenExpression.swift */,
+				3B065F7B22F34A1100A94CBF /* Info.plist */,
 				3BFD737B22F92F45007FD8AB /* When.h */,
 			);
 			path = SwiftWhen;
@@ -201,7 +212,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B3571562301BF62006FF7D2 /* WhenBuilder.swift in Sources */,
+				3B3571582301C119006FF7D2 /* WhenExpression.swift in Sources */,
 				3B065F8322F34A7000A94CBF /* When.swift in Sources */,
+				3B3571542301BF42006FF7D2 /* WhenCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
