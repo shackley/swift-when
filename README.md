@@ -11,7 +11,7 @@ This is made possible by [function builders](https://github.com/apple/swift-evol
 ### Cocoapods
 
 ```ruby
-pod 'SwiftWhen', '=> 0.0.3'
+pod 'SwiftWhen', '~> 0.0.3'
 ```
 
 ## Usage
