@@ -37,6 +37,32 @@ class WhenCaseTests: XCTestCase {
     XCTAssertTrue(result)
   }
   
+  func testMultiCase_withAutoclosure() {
+    let x = 5
+    let result = when(x) {
+      [1, 2, 3] => false
+      [4, 5, 6] => true
+      [6, 8, 9] => false
+    }
+    XCTAssertTrue(result)
+  }
+  
+  func testMultiCase_withExplicitClosure() {
+    let x = 5
+    let result = when(x) {
+      [1, 2, 3] => {
+        false
+      }
+      [4, 5, 6] => {
+        true
+      }
+      [6, 8, 9] => {
+        false
+      }
+    }
+    XCTAssertTrue(result)
+  }
+  
   func testRangeCase_withAutoclosure() {
     let x = 15
     let result = when(x) {

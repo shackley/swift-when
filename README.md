@@ -11,7 +11,7 @@ This is made possible by [function builders](https://github.com/apple/swift-evol
 ### Cocoapods
 
 ```ruby
-pod 'SwiftWhen', '~> 0.0.3'
+pod 'SwiftWhen', '~> 0.0.4'
 ```
 
 ## Usage
@@ -59,6 +59,15 @@ when(x) {
     }
 }
 // x is 2
+```
+
+If multiple cases should be handled the same way, you can combine them by using an array.
+```swift
+let x = 2
+when(x) {
+  [1, 3, 5] => print("x is 1, 2, or 3")
+  [2, 4, 6] => print("x is 2, 4, or 6")
+}
 ```
 
 The `otherwise` keyword is used to handle unknown cases.

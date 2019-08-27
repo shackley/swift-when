@@ -16,6 +16,14 @@ public func =><T: Comparable, R>(value: T, result: @escaping () -> R) -> WhenCas
   return WhenCase(value: value, result: result)
 }
 
+public func =><T: Comparable, R>(values: [T], result: @escaping @autoclosure () -> R) -> WhenCase<T, R> {
+  return WhenCase(values: values, result: result)
+}
+
+public func =><T: Comparable, R>(values: [T], result: @escaping () -> R) -> WhenCase<T, R> {
+  return WhenCase(values: values, result: result)
+}
+
 public func =><T: Comparable, R>(range: Range<T>, result: @escaping @autoclosure () -> R) -> WhenCase<T, R> {
   return WhenCase(range: range, result: result)
 }
@@ -38,6 +46,11 @@ public struct WhenCase<T: Comparable, R> {
   
   init(value: T, result: @escaping () -> R) {
     self.matches = { value == $0 }
+    self.result = result
+  }
+  
+  init(values: [T], result: @escaping () -> R) {
+    self.matches = { values.contains($0) }
     self.result = result
   }
   
