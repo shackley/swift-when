@@ -65,9 +65,10 @@ If multiple cases should be handled the same way, you can combine them by using 
 ```swift
 let x = 2
 when(x) {
-  [1, 3, 5] => print("x is 1, 2, or 3")
+  [1, 3, 5] => print("x is 1, 3, or 5")
   [2, 4, 6] => print("x is 2, 4, or 6")
 }
+// x is 2, 4, or 6
 ```
 
 The `otherwise` keyword is used to handle unknown cases.
