@@ -11,19 +11,21 @@ import Foundation
 infix operator =>: AssignmentPrecedence
 
 @discardableResult public func when<T: Comparable, R>(_ value: T, @WhenBuilder _ cases: () -> [WhenCase<T, R>]) -> R {
-  for whenCase in cases() {
-    if whenCase.matches(value) {
-      return whenCase.result()
-    }
+  if let matchingCase = cases().first(where: { $0.matches(value) }) {
+    return matchingCase.result()
   }
-  fatalError("No matching case for value: \(String(describing: value))")
+  if R.self == Void.self {
+    return () as! R
+  }
+  fatalError("No matching case found for value: \(value)")
 }
 
 @discardableResult public func when<R>(@WhenBuilder _ expressions: () -> [WhenExpression<R>]) -> R {
-  for expression in expressions() {
-    if expression.matches() {
-      return expression.result()
-    }
+  if let matchingExpression = expressions().first(where: { $0.matches() }) {
+    return matchingExpression.result()
   }
-  fatalError("None of the expressions are true")
+  if R.self == Void.self {
+    return () as! R
+  }
+  fatalError("No matching expression found")
 }

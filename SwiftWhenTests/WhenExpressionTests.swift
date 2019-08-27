@@ -58,4 +58,24 @@ class WhenExpressionTests: XCTestCase {
     }
     XCTAssertTrue(result)
   }
+  
+  func testNoMatchingExpression_withAutoclosure() {
+    when {
+      1 == 2 => ()
+      2 == 3 => ()
+    }
+    XCTAssertTrue(true)
+  }
+  
+  func testNoMatchingExpression_withExplicitClosure() {
+    when {
+      1 == 2 => {
+        ()
+      }
+      2 == 3 => {
+        ()
+      }
+    }
+    XCTAssertTrue(true)
+  }
 }

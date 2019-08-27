@@ -114,4 +114,26 @@ class WhenCaseTests: XCTestCase {
     }
     XCTAssertTrue(result)
   }
+  
+  func testNoMatchingCase_withAutoclosure() {
+    let x = 2
+    when(x) {
+      1 => ()
+      3 => ()
+    }
+    XCTAssertTrue(true)
+  }
+  
+  func testNoMatchingCase_withExplicitClosure() {
+    let x = 2
+    when(x) {
+      1 => {
+        ()
+      }
+      3 => {
+        ()
+      }
+    }
+    XCTAssertTrue(true)
+  }
 }
