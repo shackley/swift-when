@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "SwiftWhen"
-  s.version               = "0.0.4"
+  s.version               = "0.0.5"
   s.summary               = "A Swift implementation of the Kotlin when expression"
   s.homepage              = "https://github.com/shackley/swift-when"
   s.license               = { :type => "MIT", :file => "LICENSE" }
