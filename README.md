@@ -1,6 +1,8 @@
 # SwiftWhen
 
-[![CocoaPods](https://img.shields.io/cocoapods/v/SwiftWhen.svg)](https://cocoapods.org/)
+[![CocoaPods](https://img.shields.io/cocoapods/v/SwiftWhen.svg)](https://cocoapods.org/pods/SwiftWhen)
+[![SPM](https://img.shields.io/badge/SPM-compatible-blue.svg)](#swift-package-manager)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](/LICENSE)
 
 SwiftWhen is an experimental µframework that attempts to emulate a Kotlin [when expression](https://kotlinlang.org/docs/reference/control-flow.html#when-expression).
 
@@ -10,8 +12,16 @@ This is made possible by [function builders](https://github.com/apple/swift-evol
 
 ### Cocoapods
 
+Add the following line to your `Podfile`
 ```ruby
-pod 'SwiftWhen', '~> 0.0.5'
+pod 'SwiftWhen', '~> 0.1.0'
+```
+
+### Swift Package Manager
+
+Declare SwiftWhen as a dependency in your `Package.swift` file:
+```swift
+.package(url: "https://github.com/shackley/SwiftWhen", from: "0.1.0")
 ```
 
 ## Usage
@@ -47,15 +57,11 @@ let x = 2
 when(x) {
     1 => {
         print("x is 1")
-        f1()
+        foo()
     }
     2 => {
         print("x is 2")
-        f2()
-    }
-    3 => {
-        print("x is 3")
-        f3()
+        bar()
     }
 }
 // x is 2
@@ -89,11 +95,12 @@ when(x) {
   0 ..< 10 => print("x is between 0 and 9")
   10 ..< 20 => print("x is between 10 and 19")
   20 ... 30 => print("x is between 20 and 30")
+  otherwise => print("x is something else")
 }
 // x is between 10 and 19
 ```
 
- `when` can also be used without an argument. This acts as an if-else chain where the conditions are Boolean expressions. The first expression that is true is chosen.
+ `when` can also be used without an argument. This acts as a simple if-else chain where the conditions are Boolean expressions. The first expression that is true is chosen.
 ```swift
 let x = 5
 when {
@@ -103,3 +110,7 @@ when {
 }
 // x is 5
 ```
+
+#### Caveats
+
+Because `when` is just a function and not an actual Swift language feature, it is not possible to do exhaustivity checks at compile time. If a when expression does not contain a matching case, a `fatalError` will occur at runtime.
